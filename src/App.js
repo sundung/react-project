@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Button, message } from 'antd';
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom' //引入路由 BrowserRouter:地址栏不带#号
+// 引入登录组件和admin组件
+import Admin from './pages/admin/admin'
+import Login from './pages/login/login'
 /* 
 应用的根组件
 */
 
 export default class App extends Component {
-
-  handleClick = () => {
-    message.success('成功啦')
-  }
   render() {
-    return (
-      <Button type="primary" onClick={this.handleClick}>测试antd</Button>
+    return ( //路由嵌套
+      <BrowserRouter>
+        <Switch> {/* Switch只匹配一个路由 */}
+          <Route path='/login' component={Login}></Route>
+          <Route path='/' component={Admin}></Route>
+        </Switch>
+      </BrowserRouter>
     )
   }
 
